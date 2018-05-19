@@ -13,7 +13,7 @@ def generateToken(install_time):
 				RETURNING id
 			"""), {
 			"id": id.decode("utf-8"),
-			"install_time": install_time
+			"install_time": ((int)(install_time))/1000
 		})
 		return json.dumps({"status": 200, "id": (result.fetchone()["id"])})
 
@@ -37,7 +37,6 @@ def insertEventLog(data):
 				insertStmt += '(:id, '
 
 				for key in event:
-					print(key)
 					if key == 'time':
 						insertStmt += 'to_timestamp(:' + str(key) + str(i) + '), '
 					else:
@@ -56,7 +55,7 @@ def insertEventLog(data):
 			insertStmt = insertStmt[:-1]
 
 			result = connection.execute(sqlalchemy.text("""
-					INSERT INTO eventLog (id, time, type, data)
+					INSERT INTO eventLog (id, type, data, time)
 					values 
 				""" + insertStmt), compatibleData)
 
