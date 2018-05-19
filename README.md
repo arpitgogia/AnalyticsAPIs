@@ -25,18 +25,23 @@ postgres=# create table eventlog (id varchar(512) NOT NULL, time timestamp NOT N
 Now clone the repo by typing
 
 ```sh
-$ git clone 
+$ git clone https://github.com/WorldBrain/AnalyticsAPIs.git
 ```
 
 Change the location to repository
 ```sh
-$ cd 
+$ cd AnalyticsAPIs
 ```
 
 Install all the dependency
 ```sh
 $ pip install -r requirements.txt
 ```
+
+Copy `config.example.py` and rename it to `config.py` and change the password, db name, host and port.
+
+Copy `app/api/config.example.py` and rename it to `app/api/config.py` and change the password, db name, host and port.
+
 
 Run the server
 ```sh
